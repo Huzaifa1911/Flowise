@@ -252,7 +252,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
         <>
             <Stack flexDirection='row' justifyContent='space-between' sx={{ width: '100%' }}>
                 <Stack flexDirection='row' sx={{ width: '100%', maxWidth: '50%' }}>
-                    <Box>
+                    {/* <Box>
                         <ButtonBase title='Back' sx={{ borderRadius: '50%' }}>
                             <Avatar
                                 variant='rounded'
@@ -279,7 +279,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                                 <IconChevronLeft stroke={1.5} size='1.3rem' />
                             </Avatar>
                         </ButtonBase>
-                    </Box>
+                    </Box> */}
                     <Box sx={{ width: '100%' }}>
                         {!isEditingFlowName ? (
                             <Stack flexDirection='row'>
@@ -388,7 +388,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                     </Box>
                 </Stack>
                 <Box>
-                    {chatflow?.id && (
+                    {/* {chatflow?.id && (
                         <ButtonBase title='API Endpoint' sx={{ borderRadius: '50%', mr: 2 }}>
                             <Avatar
                                 variant='rounded'
@@ -409,7 +409,7 @@ const CanvasHeader = ({ chatflow, isAgentCanvas, isAgentflowV2, handleSaveFlow, 
                                 <IconCode stroke={1.5} size='1.3rem' />
                             </Avatar>
                         </ButtonBase>
-                    )}
+                    )} */}
                     <Available permission={savePermission}>
                         <ButtonBase title={`Save ${title}`} sx={{ borderRadius: '50%', mr: 2 }}>
                             <Avatar
