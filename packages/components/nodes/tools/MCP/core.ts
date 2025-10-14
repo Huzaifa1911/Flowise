@@ -92,7 +92,7 @@ export class MCPToolkit extends BaseToolkit {
             this.tools = await this.get_tools()
 
             // Close the initial client after initialization
-            await this.client.close()
+            // await this.client.close()
         }
     }
 
@@ -135,7 +135,13 @@ export async function MCPTool({
     return tool(
         async (input): Promise<string> => {
             // Create a new client for this request
-            const client = await toolkit.createClient()
+            // const client = await toolkit.createClient()
+            let client
+            if (toolkit.client === null) {
+                client = await toolkit.createClient()
+            } else {
+                client = toolkit.client
+            }
 
             try {
                 const req: CallToolRequest = { method: 'tools/call', params: { name: name, arguments: input as any } }
@@ -145,7 +151,7 @@ export async function MCPTool({
                 return contentString
             } finally {
                 // Always close the client after the request completes
-                await client.close()
+                // await client.close()
             }
         },
         {

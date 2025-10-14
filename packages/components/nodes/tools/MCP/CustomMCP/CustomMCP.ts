@@ -159,7 +159,18 @@ class Custom_MCP implements INode {
         if (options.cachePool) {
             const cachedResult = await options.cachePool.getMCPCache(cacheKey)
             if (cachedResult) {
-                return cachedResult.tools
+                // Check if the cached session ID matches the current session ID
+                // If the session IDs match, return the cached tools
+                if (cachedResult?.toolkit?.serverParams?.sessionId === options?.sessionId) {
+                    return cachedResult.tools
+                } else {
+                    // Close existing client connection if any
+                    if (cachedResult.toolkit?.client) {
+                        await cachedResult.toolkit.client.close().catch((err: any) => {
+                            console.error('Error closing MCP client:', err)
+                        })
+                    }
+                }
             }
         }
 
@@ -181,6 +192,7 @@ class Custom_MCP implements INode {
                 }
             }
 
+            serverParams = { ...serverParams, sessionId: options?.sessionId }
             // Compatible with stdio and SSE
             let toolkit: MCPToolkit
             if (process.env.CUSTOM_MCP_PROTOCOL === 'sse') {
