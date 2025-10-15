@@ -145,7 +145,7 @@ export async function MCPTool({
 
             try {
                 const req: CallToolRequest = { method: 'tools/call', params: { name: name, arguments: input as any } }
-                const res = await client.request(req, CallToolResultSchema)
+                const res = await client.request(req, CallToolResultSchema, { timeout: 60_000 * 15 }) // 15 minutes timeout
                 const content = res.content
                 const contentString = JSON.stringify(content)
                 return contentString
